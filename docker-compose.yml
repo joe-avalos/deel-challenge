@@ -1,0 +1,37 @@
+version: "3.7"
+
+services:
+
+  frontend:
+    build:
+      context: ./frontend
+    command: yarn start
+    volumes:
+      - ./frontend/src:/usr/app/src
+    tty: true
+    stdin_open: true
+    environment:
+      - REACT_APP_API_PORT=8080
+      - REACT_APP_API_URL=api
+      - REACT_APP_ENV_URL=localhost
+
+  api:
+    build:
+      context: ./backend
+    command: yarn start
+    volumes:
+      - ./backend/src:/usr/app/src
+    environment:
+      - NODE_PORT=3001
+      - REACT_PORT=3000
+      - REACT_URL=frontend
+
+  nginx:
+    image: nginx:stable-alpine
+    ports:
+      - '8080:80'
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - frontend
+      - api
