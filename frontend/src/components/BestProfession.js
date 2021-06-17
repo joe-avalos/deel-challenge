@@ -7,9 +7,15 @@ const BestProfession = ({start, end}) => {
     getBestProfession(start, end)
   }, [start, end])
   return (
-    <div>
-      {bestProfession}
-      {adminError !== '' && <p>{adminError}</p>}
+    <div className="card mt-3">
+      <div className="card-body">
+        <h6 className="card-title">
+          {bestProfession}
+        </h6>
+      </div>
+      {adminError !== '' && <p className="card-footer text-danger">
+        {adminError}
+      </p>}
     </div>
   );
 };

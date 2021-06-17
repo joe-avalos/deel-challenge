@@ -6,22 +6,27 @@ const ContractDetails = ({contract}) => {
   const client = users.filter((user) => user.id === contract.ClientId)[0]
   const contractor = users.filter((user) => user.id === contract.ContractorId)[0]
   return (
-    <table>
+    <table className="table mt-3">
+      <thead>
+      <tr>
+        <th scope="col" colSpan="2">Contract# {contract.id}</th>
+      </tr>
+      </thead>
       <tbody>
       <tr>
-        <th>Terms:</th>
+        <th scope="col">Terms:</th>
         <td>{contract.terms}</td>
       </tr>
       <tr>
-        <th>Status:</th>
+        <th scope="col">Status:</th>
         <td>{contract.status}</td>
       </tr>
       <tr>
-        <th>Client:</th>
+        <th scope="col">Client:</th>
         <td>{client.firstName} {client.lastName}</td>
       </tr>
       <tr>
-        <th>Contractor:</th>
+        <th scope="col">Contractor:</th>
         <td>{contractor.firstName} {contractor.lastName}</td>
       </tr>
       </tbody>

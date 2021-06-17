@@ -53,38 +53,63 @@ const JobsList = () => {
   }
   if (loading) return <h3>Loading...</h3>
   
-  return (
-    <div>
-      {jobs.length > 0 &&
-      jobs.map((job) => <div key={job.id}>
-        <p>ID: {job.id}</p>
-        <p>Description: {job.description}</p>
-        <p>Price: {job.price}</p>
-        {!jobForm[job.id] &&
-        <button onClick={() => setJobForm((prev) => {
-          return {...prev, [job.id]: true}
-        })}>
-          Make Payment
-        </button>}
-        {jobForm[job.id] &&
-        <form onSubmit={(e) => {
-          handlePayment(e, job.id)
-        }}>
-          <input type="text"
-                 value={payment[job.id]}
-                 onChange={(e) => {
-                   setPayment(prev => {
-                     return {...prev, [job.id]: e.target.value}
-                   })
-                 }}/>
-          {error !== '' && <p>{error}</p>}
-          <button type="submit">Submit Payment</button>
-        </form>}
-        {paymentError !== '' && <p>{paymentError}</p>}
-      </div>)
-      }
-      {paymentResult !== '' && <p>{paymentResult}</p>}
-    </div>
+  return (<>
+      {paymentResult !== '' && <p className="text-success">{paymentResult}</p>}
+      <table className="table">
+        <thead>
+        <tr>
+          <th scope="col">ID#</th>
+          <th scope="col">Description</th>
+          <th scope="col">Price</th>
+          <th scope="col">&nbsp;</th>
+        </tr>
+        </thead>
+        <tbody>
+        {jobs.length > 0 &&
+        jobs.map((job) => <tr key={job.id}>
+          <td>{job.id}</td>
+          <td>{job.description}</td>
+          <td>{job.price}</td>
+          {!jobForm[job.id] && <td>
+            <button
+              className="btn btn-primary"
+              onClick={() => setJobForm((prev) => {
+                return {...prev, [job.id]: true}
+              })}>
+              Make Payment
+            </button>
+          </td>}
+          {jobForm[job.id] && <td>
+            <form onSubmit={(e) => handlePayment(e, job.id)}
+                  className="container"
+            >
+              <div className="row no-gutters justify-content-center">
+                <div className="col col-3">
+                  <input type="text"
+                         className="form-control"
+                         placeholder="Payment Amount"
+                         value={payment[job.id]}
+                         onChange={(e) => {
+                           setPayment(prev => {
+                             return {...prev, [job.id]: e.target.value}
+                           })
+                         }}/>
+                </div>
+                <div className="col col-3">
+                  <button className="btn btn-primary" type="submit">Submit Payment</button>
+                </div>
+              </div>
+              <div className="row justify-content-center">
+                {error !== '' && <p className="text-danger">{error}</p>}
+                {paymentError !== '' && <p className="text-danger">{paymentError}</p>}
+              </div>
+            </form>
+          </td>}
+        </tr>)
+        }
+        </tbody>
+      </table>
+    </>
   );
 }
 

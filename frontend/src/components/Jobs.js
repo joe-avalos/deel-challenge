@@ -5,7 +5,7 @@ import JobsList from "./JobsList";
 const Jobs = () => {
   return (
     <JobsProvider>
-      <h1>Unpaid Jobs</h1>
+      <p className="lead">Unpaid Jobs</p>
       <JobsList />
     </JobsProvider>
   );

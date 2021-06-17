@@ -8,12 +8,16 @@ const BestClient = ({start, end, limit}) => {
     getBestClient(start, end, limit)
   }, [start, end, limit])
   return (
-    <div>
-      {bestClient.map((client, idx) => <div key={idx}>
-        <p>Client name: {client.fullName}</p>
-        <p>Total paid: {client.paid}</p>
+    <div className="container mt-3">
+      {bestClient.map((client, idx) => <div className="card" key={idx}>
+        <div className="card-body">
+          <h6 className="card-title">Client name: {client.fullName}</h6>
+          <p className="card-text">Total paid: {client.paid}</p>
+          {adminError !== '' && <p className="card-footer text-danger">
+            {adminError}
+          </p>}
+        </div>
       </div>)}
-      {adminError !== '' && <p>{adminError}</p>}
     </div>
   );
 };

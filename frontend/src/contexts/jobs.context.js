@@ -34,6 +34,8 @@ export const JobsProvider = ({children}) => {
   }
   
   const makePayment = (id, payment) => {
+    setPaymentError('')
+    setPaymentResult('')
     return new Promise((resolve, reject) => {
       fetch(`${API_BASE_ADDR}/jobs/${id}/pay`, {
         headers: {
