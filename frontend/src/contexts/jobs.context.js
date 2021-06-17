@@ -5,6 +5,7 @@ import React, {
 } from "react"
 import {AppContext} from "./app.context";
 import {UsersContext} from "./users.context";
+import {checkStatus} from "../util/checkStatus";
 
 export const JobsContext = createContext();
 
@@ -23,7 +24,7 @@ export const JobsProvider = ({children}) => {
         },
         mode: 'cors'
       })
-        .then(res => res.json())
+        .then(res => checkStatus(res))
         .then(data => {
           setJobs(data)
           resolve()
@@ -43,7 +44,7 @@ export const JobsProvider = ({children}) => {
         mode: 'cors',
         body: JSON.stringify({payment})
       })
-        .then(res => res.json())
+        .then(res => checkStatus(res))
         .then(data => {
           setPaymentResult(data)
           fetchUsers()

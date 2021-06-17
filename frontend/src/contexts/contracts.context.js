@@ -4,6 +4,7 @@ import React, {
   useState,
 } from "react"
 import {AppContext} from "./app.context";
+import {checkStatus} from "../util/checkStatus";
 
 
 export const ContractsContext = createContext();
@@ -19,7 +20,7 @@ export const ContractsProvider = ({children}) => {
       },
       mode: 'cors'
     })
-      .then(res => res.json())
+      .then(res => checkStatus(res))
       .then(data => setContracts(data))
       .catch(e => console.error(e.message))
   }
@@ -31,7 +32,7 @@ export const ContractsProvider = ({children}) => {
       },
       mode: 'cors'
     })
-      .then(res => res.json())
+      .then(res => checkStatus(res))
       .then(data => setSelected(data))
       .catch(e => console.error(e.message))
   }

@@ -9,6 +9,7 @@ import Contracts from "./components/Contracts";
 import Jobs from "./components/Jobs";
 import Admin from "./components/Admin";
 import UsersProvider from "./contexts/users.context";
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
   return (
@@ -20,12 +21,12 @@ function App() {
             <Route exact path="/">
               <Users/>
             </Route>
-            <Route path="/contracts">
+            <PrivateRoute path="/contracts">
               <Contracts/>
-            </Route>
-            <Route path="/jobs">
+            </PrivateRoute>
+            <PrivateRoute path="/jobs">
               <Jobs/>
-            </Route>
+            </PrivateRoute>
             <Route path="/admin/:slug">
               <Admin/>
             </Route>
