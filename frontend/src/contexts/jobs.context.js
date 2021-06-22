@@ -1,5 +1,5 @@
 import React, {
-  createContext,
+  createContext, useCallback,
   useContext,
   useState
 } from "react"
@@ -16,7 +16,7 @@ export const JobsProvider = ({children}) => {
   const [paymentResult, setPaymentResult] = useState('')
   const [paymentError, setPaymentError] = useState('')
   
-  const fetchJobs = () => {
+  const fetchJobs = useCallback(() => {
     return new Promise((resolve, reject) => {
       fetch(`${API_BASE_ADDR}/jobs/unpaid`, {
         headers: {
@@ -31,7 +31,7 @@ export const JobsProvider = ({children}) => {
         })
         .catch(err => reject(err))
     })
-  }
+  },[profile.id, API_BASE_ADDR])
   
   const makePayment = (id, payment) => {
     setPaymentError('')

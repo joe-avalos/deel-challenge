@@ -1,5 +1,5 @@
 import React, {
-  createContext,
+  createContext, useCallback,
   useContext,
   useState,
 } from "react"
@@ -13,7 +13,8 @@ export const ContractsProvider = ({children}) => {
   const {API_BASE_ADDR, profile} = useContext(AppContext)
   const [contracts, setContracts] = useState([])
   const [selected, setSelected] = useState(null)
-  const fetchContracts = () => {
+  
+  const fetchContracts = useCallback(() => {
     fetch(`${API_BASE_ADDR}/contracts`, {
       headers: {
         profile_id: profile.id
@@ -23,7 +24,7 @@ export const ContractsProvider = ({children}) => {
       .then(res => checkStatus(res))
       .then(data => setContracts(data))
       .catch(e => console.error(e.message))
-  }
+  },[API_BASE_ADDR, profile.id])
   
   const fetchContract = (id) => {
     fetch(`${API_BASE_ADDR}/contracts/${id}`, {

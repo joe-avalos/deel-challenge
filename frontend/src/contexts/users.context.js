@@ -1,5 +1,5 @@
 import React, {
-  createContext,
+  createContext, useCallback,
   useContext,
   useEffect,
   useState
@@ -13,16 +13,16 @@ export const UsersProvider = ({children}) => {
   const {API_BASE_ADDR} = useContext(AppContext)
   const [users, setUsers] = useState([])
   
-  const fetchUsers = () => {
+  const fetchUsers = useCallback(() => {
     fetch(`${API_BASE_ADDR}/users`)
       .then(res => checkStatus(res))
       .then(data => setUsers(data))
       .catch(err => console.error(err))
-  }
+  },[API_BASE_ADDR])
   
   useEffect(() => {
     fetchUsers()
-  }, [])
+  }, [fetchUsers])
   
   const value = {
     users,

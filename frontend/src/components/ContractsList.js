@@ -7,7 +7,7 @@ const ContractsList = () => {
   
   useEffect(()=>{
     fetchContracts()
-  },[])
+  },[fetchContracts])
   
   return (
     <div>

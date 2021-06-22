@@ -1,11 +1,15 @@
 import React, {useContext, useEffect} from 'react';
 import {AdminContext} from "../contexts/admin.context";
 
-const BestProfession = ({start, end}) => {
+const BestProfession = ({start, end, isSubmit, setSubmit}) => {
   const {getBestProfession, adminError, bestProfession} = useContext(AdminContext)
   useEffect(() => {
-    getBestProfession(start, end)
-  }, [start, end])
+    if (isSubmit) {
+      getBestProfession(start, end)
+      setSubmit(false)
+    }
+  }, [start, end, isSubmit, setSubmit, getBestProfession])
+  
   return (
     <div className="card mt-3">
       <div className="card-body">

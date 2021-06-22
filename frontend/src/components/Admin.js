@@ -11,19 +11,20 @@ const Admin = () => {
   const [start, setStart] = useState('')
   const [end, setEnd] = useState('')
   const [limit, setLimit] = useState('')
-  const [isSubmit, setIsSubmit] = useState(false)
+  const [isSubmit, setSubmit] = useState(false)
   const [error, setError] = useState('')
   
   useEffect(() => {
-    setIsSubmit(false)
+    setSubmit(false)
   }, [slug])
   
   const handleSubmit = (e) => {
-    setIsSubmit(false)
+    setSubmit(false)
     setError('')
     e.preventDefault()
+    console.log(isSubmit)
     if (Date.parse(start) && Date.parse(end)) {
-      setIsSubmit(true)
+      setSubmit(true)
     } else {
       setError('Please enter a valid date (2020-03-02)')
     }
@@ -63,8 +64,10 @@ const Admin = () => {
           {error !== '' && <p className="text-danger my-2">{error}</p>}
         </div>
       </form>
-      {isClient && isSubmit && <BestClient start={start} end={end} limit={limit}/>}
-      {!isClient && isSubmit && <BestProfession start={start} end={end}/>}
+      {isClient &&
+      <BestClient start={start} end={end} limit={limit} isSubmit={isSubmit} setSubmit={setSubmit}/>}
+      {!isClient &&
+      <BestProfession start={start} end={end} isSubmit={isSubmit} setSubmit={setSubmit}/>}
     </AdminProvider>
   );
 };

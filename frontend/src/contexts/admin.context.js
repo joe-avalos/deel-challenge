@@ -28,8 +28,9 @@ export const AdminProvider = ({children}) => {
   
   const getBestClient = (start, end, limit = null) => {
     setAdminError('')
+    limit = limit === '' ? null : limit
     return new Promise((resolve, reject) => {
-      fetch(`${API_BASE_ADDR}/admin/best-clients?start=${start}&end=${end}${limit !== null ? '&limit' + limit : ''}`, {mode: 'cors',})
+      fetch(`${API_BASE_ADDR}/admin/best-clients?start=${start}&end=${end}${limit !== null ? '&limit=' + limit : ''}`, {mode: 'cors',})
         .then(res => checkStatus(res))
         .then(data => {
           setBestClient(data)

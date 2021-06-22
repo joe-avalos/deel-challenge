@@ -17,10 +17,10 @@ services:
 
   api:
     build:
-      context: ./backend
+      context: backend_git
     command: yarn start
     volumes:
-      - ./backend/src:/usr/app/src
+      - ./backend_git/src:/usr/app/src
     environment:
       - NODE_PORT=3001
       - REACT_PORT=3000

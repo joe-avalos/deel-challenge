@@ -1,12 +1,15 @@
 import React, {useContext, useEffect} from 'react';
 import {AdminContext} from "../contexts/admin.context";
 
-const BestClient = ({start, end, limit}) => {
+const BestClient = ({start, end, limit, isSubmit, setSubmit}) => {
   const {getBestClient, adminError, bestClient} = useContext(AdminContext)
   useEffect(() => {
-    limit = limit === '' ? null : limit;
-    getBestClient(start, end, limit)
-  }, [start, end, limit])
+    if (isSubmit) {
+      getBestClient(start, end, limit)
+      setSubmit(false)
+    }
+  }, [start, end, limit, isSubmit, setSubmit, getBestClient])
+  
   return (
     <div className="container mt-3">
       {bestClient.map((client, idx) => <div className="card" key={idx}>

@@ -12,7 +12,7 @@ const JobsList = () => {
   
   useEffect(() => {
     fetchJobs()
-  }, [])
+  }, [fetchJobs])
   
   useEffect(() => {
     setJobForm(jobs.reduce((acc, job) => {

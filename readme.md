@@ -49,25 +49,25 @@ Below is a list of the exposed endpoints for the backend server. Prefix with `ht
 
 - 📂 __deel__
     - 📂 __backend__
-        - 📄 [Dockerfile](backend/Dockerfile)
-        - 📄 [README.md](backend/README.md)
-        - 📄 [node\_modules](backend/node_modules)
-        - 📄 [package.json](backend/package.json)
+        - 📄 [Dockerfile](backend_git/Dockerfile)
+        - 📄 [README.md](backend_git/README.md)
+        - 📄 [node\_modules](backend_git/node_modules)
+        - 📄 [package.json](backend_git/package.json)
         - 📂 __scripts__
-            - 📄 [seedDb.js](backend/scripts/seedDb.js)
+            - 📄 [seedDb.js](backend_git/scripts/seedDb.js)
         - 📂 __src__
-            - 📄 [app.js](backend/src/app.js)
+            - 📄 [app.js](backend_git/src/app.js)
             - 📂 __middleware__
-                - 📄 [getProfile.js](backend/src/middleware/getProfile.js)
-            - 📄 [model.js](backend/src/model.js)
+                - 📄 [getProfile.js](backend_git/src/middleware/getProfile.js)
+            - 📄 [model.js](backend_git/src/model.js)
             - 📂 __routes__
-                - 📄 [admin.router.js](backend/src/routes/admin.router.js)
-                - 📄 [balances.router.js](backend/src/routes/balances.router.js)
-                - 📄 [contracts.router.js](backend/src/routes/contracts.router.js)
-                - 📄 [jobs.router.js](backend/src/routes/jobs.router.js)
-                - 📄 [users.router.js](backend/src/routes/users.router.js)
-            - 📄 [server.js](backend/src/server.js)
-        - 📄 [yarn.lock](backend/yarn.lock)
+                - 📄 [admin.router.js](backend_git/src/routes/admin.router.js)
+                - 📄 [balances.router.js](backend_git/src/routes/balances.router.js)
+                - 📄 [contracts.router.js](backend_git/src/routes/contracts.router.js)
+                - 📄 [jobs.router.js](backend_git/src/routes/jobs.router.js)
+                - 📄 [users.router.js](backend_git/src/routes/users.router.js)
+            - 📄 [server.js](backend_git/src/server.js)
+        - 📄 [yarn.lock](backend_git/yarn.lock)
     - 📄 [docker\-compose.yml](docker-compose.yml)
     - 📂 __frontend__
         - 📄 [Dockerfile](frontend/Dockerfile)
